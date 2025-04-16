@@ -141,3 +141,4 @@ detailed explanations, cool features, and exercises to boost your skills. Give i
   <img src="public/images/readme-bottom.png" alt="Project Banner">
 </a>
 # 3d-protfolio
+# 3d_profile
