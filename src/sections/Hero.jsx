@@ -11,7 +11,7 @@ const Hero = () => {
     gsap.fromTo(
       ".hero-text h1",
       { y: 50, opacity: 0 },
-      { y: 0, opacity: 1, stagger: 0.2, duration: 1, ease: "power2.inOut" }
+      { y: 0, opacity: 1, stagger: 0.2, duration: 1.25, ease: "power2.inOut" }
     );
   });
 
@@ -22,7 +22,6 @@ const Hero = () => {
       </div>
 
       <div className="hero-layout">
-        {/* LEFT: Hero Content */}
         <header className="flex flex-col justify-center md:w-full w-screen md:px-20 px-5">
           <div className="flex flex-col gap-7">
             <div className="hero-text">
@@ -47,7 +46,7 @@ const Hero = () => {
                 </span>
               </h1>
               <h1 className="">
-                Concepts, Designs, and Code into Real Projects
+                into Real Projects
               </h1>
               <h1>that Deliver Results</h1>
             </div>
@@ -65,7 +64,6 @@ const Hero = () => {
           </div>
         </header>
 
-        {/* RIGHT: 3D Model or Visual */}
         <figure>
           <div className="hero-3d-layout">
             <HeroExperience />
@@ -74,6 +72,7 @@ const Hero = () => {
       </div>
 
       <AnimatedCounter />
+
     </section>
   );
 };

@@ -2,29 +2,24 @@ import { useState, useEffect } from "react";
 
 import { navLinks } from "../constants";
 
+
 const NavBar = () => {
-  // track if the user has scrolled down the page
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    // create an event listener for when the user scrolls
     const handleScroll = () => {
-      // check if the user has scrolled down at least 10px
-      // if so, set the state to true
       const isScrolled = window.scrollY > 10;
       setScrolled(isScrolled);
     };
 
-    // add the event listener to the window
     window.addEventListener("scroll", handleScroll);
-
-    // cleanup the event listener when the component is unmounted
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <header className={`navbar ${scrolled ? "scrolled" : "not-scrolled"}`}>
-      <div className="inner">
+      <div className="inner bg-[#141414] rounded-md p-5">
         <a href="#hero" className="logo">
           AL SHOHID
         </a>
@@ -41,13 +36,37 @@ const NavBar = () => {
             ))}
           </ul>
         </nav>
-
-        <a href="#contact" className="contact-btn group">
+        <button
+          className="md:hidden text-white"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle Menu"
+        >
+          {menuOpen ? "✕" : "☰"}
+        </button>
+        <a href="#contact" className="hidden md:block contact-btn group">
           <div className="inner">
             <span>Contact me</span>
           </div>
         </a>
       </div>
+      {menuOpen && (
+        <nav className="md:hidden bg-[#2C2C2C] rounded-md p-4">
+          <ul className="flex flex-col space-y-4 text-white">
+            {navLinks.map(({ link, name }) => (
+              <li key={name}>
+                <a href={link} onClick={() => setMenuOpen(false)}>
+                  {name}
+                </a>
+              </li>
+            ))}
+            <li>
+              <a href="#contact" onClick={() => setMenuOpen(false)}>
+                Contact me
+              </a>
+            </li>
+          </ul>
+        </nav>
+      )}
     </header>
   );
 }

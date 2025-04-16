@@ -2,10 +2,12 @@ import * as THREE from "three";
 
 const HeroLights = () => (
   <>
+    <ambientLight intensity={0.2} color="#1a1a40" />
+    <directionalLight intensity={4} position={[5, 5, 5]} />
     {/* lamp's light */}
     <spotLight
       position={[2, 5, 6]}
-      angle={0.15}
+      angle={0.10}
       penumbra={0.2}
       intensity={100}
       color="white"

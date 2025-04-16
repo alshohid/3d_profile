@@ -50,7 +50,7 @@ const TechStack = () => {
           {techStackIcons.map((techStackIcon) => (
             <div
               key={techStackIcon.name}
-              className="card-border tech-card overflow-hidden group xl:rounded-full rounded-lg"
+              className="card-border tech-card overflow-hidden group rounded-lg "
             >
               {/* The tech-card-animated-bg div is used to create a background animation when the 
                   component is hovered. */}
@@ -71,23 +71,6 @@ const TechStack = () => {
             </div>
           ))}
 
-          {/* This is for the img part */}
-          {/* {techStackImgs.map((techStackIcon, index) => (
-            <div
-              key={index}
-              className="card-border tech-card overflow-hidden group xl:rounded-full rounded-lg"
-            >
-              <div className="tech-card-animated-bg" />
-              <div className="tech-card-content">
-                <div className="tech-icon-wrapper">
-                  <img src={techStackIcon.imgPath} alt="" />
-                </div>
-                <div className="padding-x w-full">
-                  <p>{techStackIcon.name}</p>
-                </div>
-              </div>
-            </div>
-          ))} */}
         </div>
       </div>
     </div>

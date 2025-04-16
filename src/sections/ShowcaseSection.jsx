@@ -47,39 +47,54 @@ const AppShowcase = () => {
     <div id="work" ref={sectionRef} className="app-showcase">
       <div className="w-full">
         <div className="showcaselayout">
-          <div ref={rydeRef} className="first-project-wrapper">
-            <div className="image-wrapper">
-              <img src="/images/project1.png" alt="Ryde App Interface" />
-            </div>
-            <div className="text-content">
-              <h2>
-                On-Demand Rides Made Simple with a Powerful, User-Friendly App
-                called Ryde
-              </h2>
-              <p className="text-white-50 md:text-xl">
-                An app built with React Native, Expo, & TailwindCSS for a fast,
-                user-friendly experience.
-              </p>
-            </div>
+          <div ref={rydeRef} className="first-project-wrapper cursor-pointer">
+            <a
+              href="https://shopsearch-dev-new.awsdev.dartslive.com/jp/"
+              target="_blank"
+              rel="Darts live "
+            >
+              <div className="image-wrapper">
+                <img src="/images/project1.png" alt="Ryde App Interface" />
+              </div>
+              <div className="text-content">
+                <h2>
+                  Dartslive is a real-time darts app that lets players track
+                  scores, connect with others, and enjoy a smooth, modern
+                  experience on both mobile and desktop with a sleek, responsive
+                  UI.
+                </h2>
+                <p className="text-white-50 md:text-xl">
+                  An app built with Python with Djangu, Expo, & TailwindCSS for
+                  a fast, user-friendly experience.
+                </p>
+              </div>
+            </a>
           </div>
 
           <div className="project-list-wrapper overflow-hidden">
-            <div className="project" ref={libraryRef}>
-              <div className="image-wrapper bg-[#FFEFDB]">
-                <img
-                  src="/images/project2.png"
-                  alt="Library Management Platform"
-                />
+            <a
+              href="https://shopping-cart-alshohid.vercel.app/"
+              target="_blank"
+              rel="Ecommece app"
+            >
+              <div className="project" ref={libraryRef}>
+                <div className="image-wrapper bg-[#FFEFDB]">
+                  <img
+                    src="/images/project2.png"
+                    alt="Library Management Platform"
+                  />
+                </div>
+                <h2>Online Shopping Platform</h2>
               </div>
-              <h2>The Library Management Platform</h2>
-            </div>
-
-            <div className="project" ref={ycDirectoryRef}>
-              <div className="image-wrapper bg-[#FFE7EB]">
-                <img src="/images/project3.png" alt="YC Directory App" />
+            </a>
+            <a href="https://alshohid.github.io/jumping-game/" target="_blank">
+              <div className="project" ref={ycDirectoryRef}>
+                <div className="image-wrapper bg-[#FFE7EB]">
+                  <img src="/images/project3.png" alt="YC Directory App" />
+                </div>
+                <h2>Jumping Game</h2>
               </div>
-              <h2>YC Directory - A Startup Showcase App</h2>
-            </div>
+            </a>
           </div>
         </div>
       </div>
