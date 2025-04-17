@@ -69,6 +69,10 @@ const AppShowcase = () => {
                 </p>
               </div>
             </a>
+            <div className="text-red-600">
+              <p>User name : retty </p>
+              <p>Password: NOy$a0n3af</p>
+            </div>
           </div>
 
           <div className="project-list-wrapper overflow-hidden">
