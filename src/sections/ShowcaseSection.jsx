@@ -87,7 +87,7 @@ const AppShowcase = () => {
                 <h2>Online Shopping Platform</h2>
               </div>
             </a>
-            <a href="https://alshohid.github.io/jumping-game/" target="_blank">
+            <a href="https://update-jumpping-game.netlify.app/" target="_blank">
               <div className="project" ref={ycDirectoryRef}>
                 <div className="image-wrapper bg-[#FFE7EB]">
                   <img src="/images/project3.png" alt="YC Directory App" />
