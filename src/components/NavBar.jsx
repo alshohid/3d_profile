@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-
 import { navLinks } from "../constants";
 
 
@@ -20,9 +19,13 @@ const NavBar = () => {
   return (
     <header className={`navbar ${scrolled ? "scrolled" : "not-scrolled"}`}>
       <div className="inner bg-[#141414] rounded-md p-5">
-        <a href="#hero" className="logo">
+        <div className="flex items-center gap-4">
+          <img src="/images/myimage.jpg"  className="w-[30px] h-[30px]"/> 
+          <a href="#hero" className="logo">
           AL SHOHID
         </a>
+        </div>
+     
 
         <nav className="desktop">
           <ul>
