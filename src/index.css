@@ -12,11 +12,13 @@ body {
   background-color: black;
   color: white;
   scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
   font-family: "Mona Sans", sans-serif;
 }
 
 section {
   width: 100dvw;
+  scroll-snap-align: start;
 }
 
 @theme {
