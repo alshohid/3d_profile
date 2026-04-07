@@ -1,10 +1,10 @@
 const TitleHeader = ({ title, sub }) => {
   return (
-    <div className="flex flex-col items-center gap-5">
-      <div className="hero-badge">
+    <div className="section-heading">
+      <div className="hero-badge section-badge">
         <p>{sub}</p>
       </div>
-      <div>
+      <div className="section-heading-copy">
         <h1 className="font-semibold md:text-5xl text-3xl text-center">
           {title}
         </h1>

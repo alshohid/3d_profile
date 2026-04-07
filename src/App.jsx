@@ -7,21 +7,28 @@ import Hero from "./sections/Hero";
 import ShowcaseSection from "./sections/ShowcaseSection";
 import LogoShowcase from "./sections/LogoShowcase";
 import FeatureCards from "./sections/FeatureCards";
+import Services from "./sections/Services";
 import Navbar from "./components/NavBar";
 
 const App = () => (
-  <>
+  <div className="page-shell">
+    <div className="page-orb page-orb-one" aria-hidden="true" />
+    <div className="page-orb page-orb-two" aria-hidden="true" />
+    <div className="page-grid" aria-hidden="true" />
     <Navbar />
-    <Hero />
-    <ShowcaseSection />
-    <LogoShowcase />
-    <FeatureCards />
-    <Experience />
-    <TechStack />
-    <Testimonials />
-    <Contact />
-    <Footer />
-  </>
+    <main className="page-content">
+      <Hero />
+      <ShowcaseSection />
+      <LogoShowcase />
+      <FeatureCards />
+      <Services />
+      <Experience />
+      <TechStack />
+      <Testimonials />
+      <Contact />
+      <Footer />
+    </main>
+  </div>
 );
 
 export default App;

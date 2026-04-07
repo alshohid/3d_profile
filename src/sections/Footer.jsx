@@ -1,22 +1,27 @@
-import { socialImgs } from "../constants";
-
 const Footer = () => {
   return (
     <footer className="footer">
-      <div className="footer-container">
-        <div className="flex flex-col justify-center">
-          <p>Terms & Conditions</p>
+      <div className="footer-container footer-premium card-border">
+        <div>
+          <p className="footer-brand">AL SHOHID</p>
+          <p className="footer-copy">
+            Premium React, motion, and interactive web experiences built with a
+            focus on clarity and frontend polish.
+          </p>
         </div>
-        <div className="socials">
-          {socialImgs.map((socialImg, index) => (
-            <div key={index} className="icon">
-              <img src={socialImg.imgPath} alt="social icon" />
-            </div>
-          ))}
+
+        <div className="footer-links">
+          <a href="#work" className="footer-link">
+            View projects
+          </a>
+          <a href="#contact" className="footer-link">
+            Start a project
+          </a>
         </div>
-        <div className="flex flex-col justify-center">
+
+        <div>
           <p className="text-center md:text-end">
-            © {new Date().getFullYear()} Adrian Hajdin. All rights reserved.
+            © {new Date().getFullYear()} Shohid. All rights reserved.
           </p>
         </div>
       </div>

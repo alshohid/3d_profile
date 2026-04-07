@@ -1,78 +1,158 @@
+import { lazy, Suspense, useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
 import AnimatedCounter from "../components/AnimatedCounter";
 import Button from "../components/Button";
 import { words } from "../constants";
-import HeroExperience from "../components/models/hero_models/HeroExperience";
+import useDeviceProfile from "../hooks/useDeviceProfile";
+
+const HeroExperience = lazy(
+  () => import("../components/models/hero_models/HeroExperience")
+);
+
+const heroSignals = [
+  "Mobile-first responsive layout",
+  "Performance-aware 3D direction",
+  "Conversion-focused project storytelling",
+];
+
+const HeroVisualFallback = () => {
+  return (
+    <div className="hero-fallback">
+      <div className="hero-fallback-window">
+        <div className="hero-fallback-topbar">
+          <span />
+          <span />
+          <span />
+        </div>
+        <div className="hero-fallback-body">
+          <div className="hero-fallback-copy">
+            <p className="hero-fallback-kicker">Premium portfolio preview</p>
+            <h3>Designed to feel fast, intentional, and high-trust.</h3>
+            <p>
+              Lightweight on smaller devices and visually richer on capable
+              screens.
+            </p>
+          </div>
+
+          <div className="hero-fallback-media">
+            <img
+              src="/images/project1.png"
+              alt="Premium portfolio preview"
+              loading="eager"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const Hero = () => {
-  useGSAP(() => {
-    gsap.fromTo(
-      ".hero-text h1",
-      { y: 50, opacity: 0 },
-      { y: 0, opacity: 1, stagger: 0.2, duration: 1.25, ease: "power2.inOut" }
-    );
-  });
+  const sectionRef = useRef(null);
+  const { shouldUseHeroCanvas, lowPowerMode } = useDeviceProfile();
+
+  useGSAP(
+    () => {
+      gsap.fromTo(
+        ".hero-animate",
+        { y: 36, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          stagger: 0.12,
+          duration: 0.9,
+          ease: "power3.out",
+        }
+      );
+    },
+    { scope: sectionRef }
+  );
 
   return (
-    <section id="hero" className="relative overflow-hidden">
-      <div className="absolute top-0 left-0 z-10">
-        <img src="/images/bg.png" alt="" />
-      </div>
+    <section ref={sectionRef} id="hero" className="hero-section">
+      <div className="hero-backdrop-glow" aria-hidden="true" />
 
       <div className="hero-layout">
-        <header className="flex flex-col justify-center md:w-full w-screen md:px-20 px-5">
-          <div className="flex flex-col gap-7">
-            <div className="hero-text">
-              <h1>
-                Shaping Ideas,
-                <span className="slide">
-                  <span className="wrapper">
-                    {words.map((word, index) => (
-                      <span
-                        key={index}
-                        className="flex items-center md:gap-3 gap-1 pb-2"
-                      >
-                        <img
-                          src={word.imgPath}
-                          alt="person"
-                          className="xl:size-12 md:size-10 size-7 md:p-2 p-1 rounded-full bg-white-50"
-                        />
-                        <span>{word.text}</span>
-                      </span>
-                    ))}
+        <header className="hero-copy">
+          <div className="hero-badge hero-animate">
+            <p>Open to premium freelance and product collaborations</p>
+          </div>
+
+          <p className="hero-kicker hero-animate">
+            Frontend systems, polished motion, and high-conversion portfolio
+            design
+          </p>
+
+          <div className="hero-text hero-animate">
+            <h1>Building</h1>
+
+            <div className="hero-word-window">
+              <span className="wrapper">
+                {words.map((word, index) => (
+                  <span
+                    key={`${word.text}-${index}`}
+                    className="hero-word-chip"
+                  >
+                    <img
+                      src={word.imgPath}
+                      alt={word.text}
+                      loading="lazy"
+                      className="xl:size-12 md:size-10 size-7 md:p-2 p-1 rounded-full bg-white-50"
+                    />
+                    <span>{word.text}</span>
                   </span>
-                </span>
-              </h1>
-              <h1 className="">
-                into Real Projects
-              </h1>
-              <h1>that Deliver Results</h1>
+                ))}
+              </span>
             </div>
 
-            <p className="text-white-50 md:text-lg relative z-10 pointer-events-none">
-              Hi, I’m Shohid, a software developer from Bangladesh with a deep
-              passion for building purposeful and efficient digital solutions.
-            </p>
+            <h1>into premium</h1>
+            <h1>digital experiences</h1>
+          </div>
 
+          <p className="hero-lead hero-animate">
+            I help portfolios, products, and brands feel sharper on desktop,
+            smoother on mobile, and more trustworthy from the very first scroll.
+          </p>
+
+          <div className="hero-cta-row hero-animate">
             <Button
-              text="See My Work"
-              className="md:w-80 md:h-16 w-60 h-12"
-              id="counter"
+              text="Explore Case Studies"
+              className="md:w-80 md:h-16 w-full sm:w-72 h-14"
+              id="work"
             />
+            <Button
+              text="Start a Project"
+              className="md:w-72 md:h-16 w-full sm:w-64 h-14"
+              id="contact"
+              variant="secondary"
+            />
+          </div>
+
+          <div className="hero-signal-grid hero-animate">
+            {heroSignals.map((signal) => (
+              <div key={signal} className="hero-signal-card">
+                {signal}
+              </div>
+            ))}
           </div>
         </header>
 
-        <figure>
-          <div className="hero-3d-layout">
-            <HeroExperience />
+        <figure className="hero-visual-column hero-animate">
+          <div className="hero-visual-shell card-border">
+            {shouldUseHeroCanvas ? (
+              <Suspense fallback={<HeroVisualFallback />}>
+                <HeroExperience lite={lowPowerMode} />
+              </Suspense>
+            ) : (
+              <HeroVisualFallback />
+            )}
           </div>
         </figure>
       </div>
 
       <AnimatedCounter />
-
     </section>
   );
 };

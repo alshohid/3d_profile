@@ -4,6 +4,10 @@ const navLinks = [
     link: "#work",
   },
   {
+    name: "Services",
+    link: "#services",
+  },
+  {
     name: "Experience",
     link: "#experience",
   },
@@ -12,8 +16,8 @@ const navLinks = [
     link: "#skills",
   },
   {
-    name: "Testimonials",
-    link: "#testimonials",
+    name: "Process",
+    link: "#process",
   },
 ];
 
@@ -30,255 +34,296 @@ const words = [
 
 const counterItems = [
   { value: 4, suffix: "+", label: "Years of Experience" },
-  { value: 200, suffix: "+", label: "Satisfied Clients" },
   { value: 10, suffix: "+", label: "Completed Projects" },
-  { value: 90, suffix: "%", label: "Client Retention Rate" },
+  { value: 3, suffix: "+", label: "Core Delivery Tracks" },
+  { value: 100, suffix: "%", label: "Focus on Quality and Clarity" },
 ];
 
 const logoIconsList = [
   {
-    imgPath: "/images/logos/company-logo-1.png",
+    name: "React",
+    imgPath: "/images/logos/react.png",
   },
   {
-    imgPath: "/images/logos/company-logo-2.png",
+    name: "Python",
+    imgPath: "/images/logos/python.svg",
   },
   {
-    imgPath: "/images/logos/company-logo-3.png",
+    name: "Node.js",
+    imgPath: "/images/logos/node.png",
   },
   {
-    imgPath: "/images/logos/company-logo-4.png",
+    name: "Three.js",
+    imgPath: "/images/logos/three.png",
   },
   {
-    imgPath: "/images/logos/company-logo-5.png",
-  },
-  {
-    imgPath: "/images/logos/company-logo-6.png",
-  },
-  {
-    imgPath: "/images/logos/company-logo-7.png",
-  },
-  {
-    imgPath: "/images/logos/company-logo-8.png",
-  },
-  {
-    imgPath: "/images/logos/company-logo-9.png",
-  },
-  {
-    imgPath: "/images/logos/company-logo-10.png",
-  },
-  {
-    imgPath: "/images/logos/company-logo-11.png",
+    name: "Git",
+    imgPath: "/images/logos/git.svg",
   },
 ];
 
 const abilities = [
   {
     imgPath: "/images/seo.png",
-    title: "Quality Focus",
-    desc: "Delivering high-quality results while maintaining attention to every detail.",
+    title: "Outcome-Focused Execution",
+    desc: "The work is shaped around user experience, business clarity, and production-ready polish.",
   },
   {
     imgPath: "/images/chat.png",
-    title: "Reliable Communication",
-    desc: "Keeping you updated at every step to ensure transparency and clarity.",
+    title: "Client-Friendly Communication",
+    desc: "Clear updates, transparent progress, and a collaborative workflow keep every build moving smoothly.",
   },
   {
     imgPath: "/images/time.png",
-    title: "On-Time Delivery",
-    desc: "Making sure projects are completed on schedule, with quality & attention to detail.",
+    title: "Performance-Minded Delivery",
+    desc: "Interfaces are built to feel premium without losing speed, responsiveness, or maintainability.",
+  },
+];
+
+const featuredProjects = [
+  {
+    title: "DartsLive Shop Search",
+    eyebrow: "Featured client build",
+    description:
+      "A polished cross-device experience for darts players to discover shops, follow activity, and move through a modern product flow with confidence.",
+    summary:
+      "Focused on responsive UI, frontend clarity, and a clean browsing experience across mobile and desktop.",
+    imgPath: "/images/project1.png",
+    href: "https://shopsearch-dev-new.awsdev.dartslive.com/jp/",
+    cta: "Open live build",
+    tags: ["Python", "Django", "Expo", "Tailwind CSS"],
+    highlights: [
+      "Real-world product collaboration with a client-facing interface",
+      "Responsive layouts tuned for both mobile and desktop browsing",
+      "Clean visual hierarchy to support fast discovery and smoother sessions",
+    ],
+    note: "Access is limited because this build is for a live client environment. Private walkthrough access can be shared on request.",
+  },
+  {
+    title: "Online Shopping Platform",
+    eyebrow: "Commerce prototype",
+    description:
+      "A storefront experience built to explore cleaner layouts, product discovery, and a faster ecommerce browsing flow.",
+    summary:
+      "Ideal as a reference for premium UI polish, catalog organization, and conversion-minded frontend work.",
+    imgPath: "/images/project2.png",
+    href: "https://shopping-cart-alshohid.vercel.app/",
+    cta: "View project",
+    tags: ["React", "Frontend Architecture", "Tailwind CSS"],
+    highlights: [
+      "Modern product card layout and shopping flow",
+      "Responsive interface patterns for product-heavy pages",
+    ],
+  },
+  {
+    title: "Jumping Game",
+    eyebrow: "Interactive experiment",
+    description:
+      "A lightweight browser game that highlights interaction design, responsiveness, and playful frontend motion.",
+    summary:
+      "Useful as a proof point for building engaging interfaces beyond standard landing pages.",
+    imgPath: "/images/project3.png",
+    href: "https://update-jumping-game.vercel.app/",
+    cta: "Play the demo",
+    tags: ["JavaScript", "Interactive UI", "Motion"],
+    highlights: [
+      "Fast-loading browser interaction",
+      "Simple mechanics with polished user feedback",
+    ],
+  },
+];
+
+const servicePackages = [
+  {
+    title: "Premium Portfolio Systems",
+    description:
+      "For founders, creators, and senior professionals who need a personal site that feels distinct, sharp, and trust-building.",
+    includes: [
+      "Hero storytelling with polished motion and strong CTA flow",
+      "Case-study driven project presentation",
+      "Responsive performance and refined visual detail",
+    ],
+  },
+  {
+    title: "Product-Ready Frontend Builds",
+    description:
+      "For teams that need serious React or Next.js execution with clean UX, reusable structure, and delivery discipline.",
+    includes: [
+      "Responsive interfaces for dashboards, platforms, and SaaS products",
+      "Reusable component systems with maintainable code",
+      "Performance and user-flow improvements for production work",
+    ],
+  },
+  {
+    title: "Interactive 3D Experiences",
+    description:
+      "For brands that want the site to feel memorable through motion, depth, and modern web presentation without losing clarity.",
+    includes: [
+      "Three.js and React Three Fiber integrations",
+      "Premium landing page motion and scroll scenes",
+      "Balanced 3D presentation with fallback-friendly UX",
+    ],
   },
 ];
 
 const techStackImgs = [
   {
-    name: "React Developer",
+    name: "React",
     imgPath: "/images/logos/react.png",
   },
   {
-    name: "Python Developer",
-    imgPath: "/images/logos/python.svg",
-  },
-  {
-    name: "Backend Developer",
+    name: "Node.js",
     imgPath: "/images/logos/node.png",
   },
   {
-    name: "Interactive Developer",
-    imgPath: "/images/logos/three.png",
+    name: "Git",
+    imgPath: "/images/logos/git.svg",
   },
   {
-    name: "Project Manager",
-    imgPath: "/images/logos/git.svg",
+    name: "Python",
+    imgPath: "/images/logos/python.svg",
+  },
+  {
+    name: "Three.js",
+    imgPath: "/images/logos/three.png",
   },
 ];
 
 const techStackIcons = [
   {
-    name: "React Developer",
+    name: "React Frontend",
     modelPath: "/models/react_logo-transformed.glb",
     scale: 1,
     rotation: [0, 0, 0],
   },
   {
-    name: "Next Js Full Stack Developer",
+    name: "Next.js / Node.js Delivery",
     modelPath: "/models/node-transformed.glb",
     scale: 5,
     rotation: [0, -Math.PI / 2, 0],
   },
   {
-    name: "Node/Express Developler ",
+    name: "Git Collaboration",
     modelPath: "/models/git-svg-transformed.glb",
     scale: 0.05,
     rotation: [0, -Math.PI / 4, 0],
   },
   {
-    name: "Python Developer",
+    name: "Python Automation",
     modelPath: "/models/python-transformed.glb",
     scale: 0.8,
     rotation: [0, 0, 0],
   },
-
   {
-    name: "Djangu Developer",
+    name: "Three.js Interfaces",
     modelPath: "/models/three.js-transformed.glb",
     scale: 0.05,
     rotation: [0, 0, 0],
   },
-
 ];
 
 const expCards = [
   {
     review:
-      "Shohid brought a rare combination of creativity and deep technical skill to our frontend team. His contributions led to noticeable improvements in performance, resulting in smoother and faster user experiences. A true asset to any development team.",
-
+      "Shohid brings strong visual judgment and frontend discipline to every build. He balances polish, responsiveness, and maintainable structure in a way that helps products feel premium in the browser.",
     imgPath: "/images/exp2.png",
     logoPath: "/images/logo2.png",
     title: "Frontend Developer (Remote)",
     date: "November 2024 - Present",
     responsibilities: [
-      "Designed and developed dynamic user-facing features for the TechNova platform.",
-      "Worked collaboratively with designers to implement intuitive and responsive interfaces.",
-      "Enhanced application performance by optimizing code and reducing load times across devices.",
+      "Built user-facing product features with a focus on smooth interaction and responsive behavior.",
+      "Worked closely with design and product direction to translate ideas into reliable frontend delivery.",
+      "Improved visual consistency and code quality across real-world interface work.",
     ],
   },
   {
     review:
-      "Shohid’s contributions to Celltron EMS’s web platform have been exceptional. He consistently approaches challenges with a solution-driven mindset and a strong attention to detail.",
+      "From internal tooling to user-facing experiences, Shohid consistently approaches delivery with practical problem-solving and close attention to detail.",
     imgPath: "/images/exp1.png",
     logoPath: "/images/logo1.png",
-    title: "Frontend Developer (on-site)",
+    title: "Frontend Developer (On-site)",
     date: "August 2023 - October 2024",
     responsibilities: [
-      "Led the frontend development of scalable web applications for Celltron EMS.",
-      "Collaborated with backend engineers to ensure seamless API integration and data flow.",
-      "Contributed to internal tools and enhancements that improved developer efficiency and product reliability.",
+      "Delivered scalable frontend work that supported ongoing product and platform improvements.",
+      "Collaborated with backend engineers to align APIs, data flow, and UI behavior.",
+      "Contributed to cleaner implementation patterns and more reliable user journeys.",
     ],
   },
   {
     review:
-      "Shohid played a key role in enhancing Ostad’s web and mobile platforms. His efficient development approach and problem-solving mindset helped us meet our product milestones with quality results.",
+      "Shohid adds value through clean React execution, practical UI thinking, and the ability to turn product feedback into clear, working experiences.",
     imgPath: "/images/exp3.png",
     logoPath: "/images/logo3.png",
-    title: "Next.js / React Developer",
+    title: "React / Next.js Developer",
     date: "March 2019 - May 2020",
     responsibilities: [
-      "Developed and maintained responsive web interfaces using Next.js and React for Ostad's learning platform.",
-      "Contributed to the mobile app experience using React Native, ensuring seamless integration with backend APIs.",
-      "Collaborated with the product and design teams to translate feedback into functional, high-performing features.",
+      "Built responsive interfaces with React and Next.js for product-driven experiences.",
+      "Supported mobile-friendly workflows and UI integration with backend services.",
+      "Worked with product and design feedback to improve usability and delivery quality.",
     ],
   },
 ];
 
-const expLogos = [
+const processHighlights = [
   {
-    name: "logo1",
-    imgPath: "/images/logo1.png",
+    title: "Discovery First",
+    label: "Scope, priorities, and success criteria",
+    description:
+      "Premium work starts with a clear plan. The build is framed around goals, audience needs, and the exact experience the product should create.",
+    imgPath: "/images/chat.png",
   },
   {
-    name: "logo2",
-    imgPath: "/images/logo2.png",
+    title: "Design With Intent",
+    label: "Clean hierarchy and strong UX decisions",
+    description:
+      "Layouts, spacing, motion, and interaction are treated as part of the product strategy, not as surface-level decoration.",
+    imgPath: "/images/designs.svg",
   },
   {
-    name: "logo3",
-    imgPath: "/images/logo3.png",
-  },
-];
-
-const testimonials = [
-  {
-    name: "Esther Howard",
-    mentions: "@estherhoward",
-    review:
-      "I can’t say enough good things about Adrian. He was able to take our complex project requirements and turn them into a seamless, functional website. His problem-solving abilities are outstanding.",
-    imgPath: "/images/client1.png",
+    title: "Build for Production",
+    label: "Reusable code and dependable structure",
+    description:
+      "The codebase is organized to stay readable, scalable, and easier to extend after launch instead of collapsing under the next feature request.",
+    imgPath: "/images/code.svg",
   },
   {
-    name: "Wade Warren",
-    mentions: "@wadewarren",
-    review:
-      "Working with Adrian was a fantastic experience. He transformed our outdated website into a modern, user-friendly platform. His attention to detail and commitment to quality are unmatched. Highly recommend him for any web dev projects.",
-    imgPath: "/images/client3.png",
-  },
-  {
-    name: "Guy Hawkins",
-    mentions: "@guyhawkins",
-    review:
-      "Collaborating with Adrian was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Adrian's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Adrian is the ideal partner.",
-    imgPath: "/images/client2.png",
-  },
-  {
-    name: "Marvin McKinney",
-    mentions: "@marvinmckinney",
-    review:
-      "Adrian was a pleasure to work with. He turned our outdated website into a fresh, intuitive platform that’s both modern and easy to navigate. Fantastic work overall.",
-    imgPath: "/images/client5.png",
-  },
-  {
-    name: "Floyd Miles",
-    mentions: "@floydmiles",
-    review:
-      "Adrian’s expertise in web development is truly impressive. He delivered a robust and scalable solution for our e-commerce site, and our online sales have significantly increased since the launch. He’s a true professional!",
-    imgPath: "/images/client4.png",
-  },
-  {
-    name: "Albert Flores",
-    mentions: "@albertflores",
-    review:
-      "Adrian was a pleasure to work with. He understood our requirements perfectly and delivered a website that exceeded our expectations. His skills in both frontend and backend dev are top-notch.",
-    imgPath: "/images/client6.png",
+    title: "Polish Before Handoff",
+    label: "Performance, clarity, and launch readiness",
+    description:
+      "Final delivery focuses on responsiveness, visual consistency, and the small details that make the experience feel confidently premium.",
+    imgPath: "/images/time.png",
   },
 ];
 
-const socialImgs = [
+const contactHighlights = [
   {
-    name: "insta",
-    imgPath: "/images/insta.png",
+    title: "Clear project framing",
+    description:
+      "Budget, scope, and delivery priorities are aligned before implementation gets heavy.",
   },
   {
-    name: "fb",
-    imgPath: "/images/fb.png",
+    title: "Strong frontend execution",
+    description:
+      "React, motion, and UI systems are built with clarity, responsiveness, and long-term maintainability in mind.",
   },
   {
-    name: "x",
-    imgPath: "/images/x.png",
-  },
-  {
-    name: "linkedin",
-    imgPath: "/images/linkedin.png",
+    title: "Remote-friendly collaboration",
+    description:
+      "Ideal for freelance projects, contract work, and product teams that value clean communication.",
   },
 ];
 
 export {
-  words,
   abilities,
-  logoIconsList,
+  contactHighlights,
   counterItems,
   expCards,
-  expLogos,
-  testimonials,
-  socialImgs,
+  featuredProjects,
+  logoIconsList,
+  navLinks,
+  processHighlights,
+  servicePackages,
   techStackIcons,
   techStackImgs,
-  navLinks,
+  words,
 };

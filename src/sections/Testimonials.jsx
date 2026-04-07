@@ -1,29 +1,28 @@
-import { testimonials } from "../constants";
 import TitleHeader from "../components/TitleHeader";
-import GlowCard from "../components/GlowCard";
+import { processHighlights } from "../constants";
 
 const Testimonials = () => {
   return (
-    <section id="testimonials" className="flex-center section-padding">
-      <div className="w-full h-full md:px-10 px-5">
+    <section id="process" className="flex-center section-padding">
+      <div className="section-shell">
         <TitleHeader
-          title="What People Say About Me?"
-          sub="⭐️ Customer feedback highlights"
+          title="A Premium Site Needs a Premium Build Process"
+          sub="🧭 How I approach delivery"
         />
 
-        <div className="lg:columns-3 md:columns-2 columns-1 mt-16">
-          {testimonials.map((testimonial, index) => (
-            <GlowCard card={testimonial} key={index} index={index}>
-              <div className="flex items-center gap-3">
-                <div>
-                  <img src={testimonial.imgPath} alt="" />
-                </div>
-                <div>
-                  <p className="font-bold">{testimonial.name}</p>
-                  <p className="text-white-50">{testimonial.mentions}</p>
-                </div>
+        <div className="process-grid">
+          {processHighlights.map((item) => (
+            <article key={item.title} className="process-card card-border">
+              <div className="process-icon">
+                <img src={item.imgPath} alt={item.title} loading="lazy" />
               </div>
-            </GlowCard>
+
+              <div className="process-copy">
+                <p className="process-label">{item.label}</p>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </div>
+            </article>
           ))}
         </div>
       </div>

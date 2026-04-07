@@ -1,26 +1,74 @@
-import { useRef, useState } from "react";
+import { lazy, Suspense, useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 
 import TitleHeader from "../components/TitleHeader";
-import ContactExperience from "../components/models/contact/ContactExperience";
+import { contactHighlights } from "../constants";
+import useInViewOnce from "../hooks/useInViewOnce";
+import useDeviceProfile from "../hooks/useDeviceProfile";
+
+const ContactExperience = lazy(
+  () => import("../components/models/contact/ContactExperience")
+);
+
+const initialFormState = {
+  name: "",
+  email: "",
+  company: "",
+  projectType: "Portfolio Website",
+  budget: "Not defined yet",
+  timeline: "Flexible",
+  message: "",
+};
+
+const ContactVisualFallback = () => {
+  return (
+    <div className="contact-fallback">
+      <div className="contact-fallback-card">
+        <p className="contact-kicker">Premium collaboration flow</p>
+        <h3>Responsive, clear, and scoped around delivery goals.</h3>
+        <p>
+          The mobile version stays lightweight and polished, while larger
+          screens can unlock richer visual presentation.
+        </p>
+
+        <div className="contact-fallback-metrics">
+          <div>
+            <span>01</span>
+            <p>Clear project scoping</p>
+          </div>
+          <div>
+            <span>02</span>
+            <p>Fast communication cycle</p>
+          </div>
+          <div>
+            <span>03</span>
+            <p>Premium frontend polish</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const Contact = () => {
   const formRef = useRef(null);
-  const [loading, setLoading] = useState(false);
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    message: "",
+  const [sectionRef, shouldRenderExperience] = useInViewOnce({
+    rootMargin: "180px 0px",
   });
+  const { shouldUseContactCanvas, lowPowerMode } = useDeviceProfile();
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState("idle");
+  const [form, setForm] = useState(initialFormState);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setForm({ ...form, [name]: value });
+    setForm((currentForm) => ({ ...currentForm, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); // Show loading state
+    setLoading(true);
+    setStatus("idle");
 
     try {
       await emailjs.sendForm(
@@ -30,86 +78,205 @@ const Contact = () => {
         import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
       );
 
-      // Reset form and stop loading
-      setForm({ name: "", email: "", message: "" });
+      setForm(initialFormState);
+      setStatus("success");
     } catch (error) {
-      console.error("EmailJS Error:", error); // Optional: show toast
+      console.error("EmailJS Error:", error);
+      setStatus("error");
     } finally {
-      setLoading(false); // Always stop loading, even on error
+      setLoading(false);
     }
   };
 
+  const shouldRenderCanvas = shouldRenderExperience && shouldUseContactCanvas;
+
   return (
-    <section id="contact" className="flex-center section-padding">
-      <div className="w-full h-full md:px-10 px-5">
+    <section ref={sectionRef} id="contact" className="flex-center section-padding">
+      <div className="section-shell">
         <TitleHeader
-          title="Get in Touch – Let’s Connect"
-          sub="💬 Have questions or ideas? Let’s talk! 🚀"
+          title="Get in Touch for a More Premium Build"
+          sub="💬 Let’s plan the next project"
         />
-        <div className="grid-12-cols mt-16">
-          <div className="xl:col-span-5">
-            <div className="flex-center card-border rounded-xl p-10">
+
+        <div className="grid-12-cols mt-16 contact-grid">
+          <div className="xl:col-span-6">
+            <div className="card-border rounded-[32px] p-6 md:p-10 h-full">
+              <div className="contact-copy">
+                <p className="contact-kicker">Project inquiry</p>
+                <h3>Tell me what you want to build</h3>
+                <p>
+                  Share the idea, scope, and timeline. I&apos;ll use that to
+                  understand the build properly before replying.
+                </p>
+              </div>
+
               <form
                 ref={formRef}
                 onSubmit={handleSubmit}
-                className="w-full flex flex-col gap-7"
+                className="w-full flex flex-col gap-7 mt-8"
               >
-                <div>
-                  <label htmlFor="name">Your name</label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={form.name}
-                    onChange={handleChange}
-                    placeholder="What’s your good name?"
-                    required
-                  />
+                <div className="contact-form-grid">
+                  <div>
+                    <label htmlFor="name">Your name</label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={form.name}
+                      onChange={handleChange}
+                      placeholder="What should I call you?"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="email">Your email</label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={form.email}
+                      onChange={handleChange}
+                      placeholder="Where should I reply?"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="contact-form-grid">
+                  <div>
+                    <label htmlFor="company">Company or brand</label>
+                    <input
+                      type="text"
+                      id="company"
+                      name="company"
+                      value={form.company}
+                      onChange={handleChange}
+                      placeholder="Optional"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="projectType">Project type</label>
+                    <select
+                      id="projectType"
+                      name="projectType"
+                      value={form.projectType}
+                      onChange={handleChange}
+                    >
+                      <option>Portfolio Website</option>
+                      <option>Product Frontend</option>
+                      <option>SaaS Dashboard</option>
+                      <option>Interactive 3D Experience</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="contact-form-grid">
+                  <div>
+                    <label htmlFor="budget">Budget range</label>
+                    <select
+                      id="budget"
+                      name="budget"
+                      value={form.budget}
+                      onChange={handleChange}
+                    >
+                      <option>Not defined yet</option>
+                      <option>Under $500</option>
+                      <option>$500 - $1,500</option>
+                      <option>$1,500 - $3,000</option>
+                      <option>$3,000+</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label htmlFor="timeline">Timeline</label>
+                    <select
+                      id="timeline"
+                      name="timeline"
+                      value={form.timeline}
+                      onChange={handleChange}
+                    >
+                      <option>Flexible</option>
+                      <option>As soon as possible</option>
+                      <option>Within 2 weeks</option>
+                      <option>Within 1 month</option>
+                      <option>More than 1 month</option>
+                    </select>
+                  </div>
                 </div>
 
                 <div>
-                  <label htmlFor="email">Your Email</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={form.email}
-                    onChange={handleChange}
-                    placeholder="What’s your email address?"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="message">Your Message</label>
+                  <label htmlFor="message">Project details</label>
                   <textarea
                     id="message"
                     name="message"
                     value={form.message}
                     onChange={handleChange}
-                    placeholder="How can I help you?"
-                    rows="5"
+                    placeholder="Tell me about the experience, goals, or features you want to ship."
+                    rows="6"
                     required
                   />
                 </div>
 
-                <button type="submit">
+                <button type="submit" disabled={loading}>
                   <div className="cta-button group">
                     <div className="bg-circle" />
                     <p className="text">
-                      {loading ? "Sending..." : "Send Message"}
+                      {loading ? "Sending..." : "Send Project Brief"}
                     </p>
                     <div className="arrow-wrapper">
                       <img src="/images/arrow-down.svg" alt="arrow" />
                     </div>
                   </div>
                 </button>
+
+                {status === "success" && (
+                  <p className="status-note success">
+                    Your project brief was sent successfully.
+                  </p>
+                )}
+
+                {status === "error" && (
+                  <p className="status-note error">
+                    The message could not be sent right now. Please check the
+                    EmailJS keys and try again.
+                  </p>
+                )}
               </form>
             </div>
           </div>
-          <div className="xl:col-span-7 min-h-96">
-            <div className="bg-[#cd7c2e] w-full h-full hover:cursor-grab rounded-3xl overflow-hidden">
-              <ContactExperience />
+
+          <div className="xl:col-span-6 min-h-96">
+            <div className="contact-showcase card-border rounded-[32px] overflow-hidden h-full">
+              <div className="contact-side-panel">
+                <p className="contact-kicker">Why teams reach out</p>
+                <h3>Premium execution with a cleaner delivery flow</h3>
+
+                <div className="contact-highlights">
+                  {contactHighlights.map((item) => (
+                    <div key={item.title} className="contact-highlight-item">
+                      <div className="contact-highlight-dot" />
+                      <div>
+                        <p className="contact-highlight-title">{item.title}</p>
+                        <p className="contact-highlight-text">
+                          {item.description}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="contact-canvas-shell">
+                {shouldRenderCanvas ? (
+                  <Suspense fallback={<ContactVisualFallback />}>
+                    <ContactExperience lite={lowPowerMode} />
+                  </Suspense>
+                ) : (
+                  <ContactVisualFallback />
+                )}
+              </div>
             </div>
           </div>
         </div>

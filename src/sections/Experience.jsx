@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -9,141 +10,155 @@ import GlowCard from "../components/GlowCard";
 gsap.registerPlugin(ScrollTrigger);
 
 const Experience = () => {
-  useGSAP(() => {
-    // Loop through each timeline card and animate them in
-    // as the user scrolls to each card
-    gsap.utils.toArray(".timeline-card").forEach((card) => {
-      // Animate the card coming in from the left
-      // and fade in
-      gsap.from(card, {
-        // Move the card in from the left
-        xPercent: -100,
-        // Make the card invisible at the start
-        opacity: 0,
-        // Set the origin of the animation to the left side of the card
-        transformOrigin: "left left",
-        // Animate over 1 second
-        duration: 1,
-        // Use a power2 ease-in-out curve
-        ease: "power2.inOut",
-        // Trigger the animation when the card is 80% of the way down the screen
-        scrollTrigger: {
-          // The card is the trigger element
-          trigger: card,
-          // Trigger the animation when the card is 80% down the screen
-          start: "top 80%",
-        },
-      });
-    });
+  const sectionRef = useRef(null);
 
-    // Animate the timeline height as the user scrolls
-    // from the top of the timeline to 70% down the screen
-    // The timeline height should scale down from 1 to 0
-    // as the user scrolls up the screen
-    gsap.to(".timeline", {
-      // Set the origin of the animation to the bottom of the timeline
-      transformOrigin: "bottom bottom",
-      // Animate the timeline height over 1 second
-      ease: "power1.inOut",
-      // Trigger the animation when the timeline is at the top of the screen
-      // and end it when the timeline is at 70% down the screen
-      scrollTrigger: {
-        trigger: ".timeline",
-        start: "top center",
-        end: "70% center",
-        // Update the animation as the user scrolls
-        onUpdate: (self) => {
-          // Scale the timeline height as the user scrolls
-          // from 1 to 0 as the user scrolls up the screen
-          gsap.to(".timeline", {
-            scaleY: 1 - self.progress,
-          });
-        },
-      },
-    });
+  useGSAP(
+    () => {
+      const rows = gsap.utils.toArray(".experience-row");
 
-    // Loop through each expText element and animate them in
-    // as the user scrolls to each text element
-    gsap.utils.toArray(".expText").forEach((text) => {
-      // Animate the text opacity from 0 to 1
-      // and move it from the left to its final position
-      // over 1 second with a power2 ease-in-out curve
-      gsap.from(text, {
-        // Set the opacity of the text to 0
-        opacity: 0,
-        // Move the text from the left to its final position
-        // (xPercent: 0 means the text is at its final position)
-        xPercent: 0,
-        // Animate over 1 second
-        duration: 1,
-        // Use a power2 ease-in-out curve
-        ease: "power2.inOut",
-        // Trigger the animation when the text is 60% down the screen
-        scrollTrigger: {
-          // The text is the trigger element
-          trigger: text,
-          // Trigger the animation when the text is 60% down the screen
-          start: "top 60%",
-        },
+      rows.forEach((row) => {
+        const cardPanel = row.querySelector(".experience-card-panel");
+        const detailPanel = row.querySelector(".experience-detail-panel");
+        const logo = row.querySelector(".timeline-logo");
+        const progress = row.querySelector(".experience-rail-progress");
+        const isReverse = row.dataset.direction === "reverse";
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: row,
+            start: "top 78%",
+            once: true,
+          },
+        });
+
+        tl.fromTo(
+          cardPanel,
+          {
+            autoAlpha: 0,
+            x: isReverse ? 56 : -56,
+            y: 16,
+            rotateX: 8,
+          },
+          {
+            autoAlpha: 1,
+            x: 0,
+            y: 0,
+            rotateX: 0,
+            duration: 0.9,
+            ease: "power3.out",
+          }
+        )
+          .fromTo(
+            detailPanel,
+            {
+              autoAlpha: 0,
+              x: isReverse ? -28 : 28,
+              y: 24,
+            },
+            {
+              autoAlpha: 1,
+              x: 0,
+              y: 0,
+              duration: 0.8,
+              ease: "power3.out",
+            },
+            0.12
+          )
+          .fromTo(
+            logo,
+            {
+              autoAlpha: 0,
+              scale: 0.7,
+            },
+            {
+              autoAlpha: 1,
+              scale: 1,
+              duration: 0.5,
+              ease: "back.out(1.8)",
+            },
+            0.12
+          )
+          .to(
+            progress,
+            {
+              height: "100%",
+              duration: 1,
+              ease: "power2.out",
+            },
+            0
+          );
       });
-    }, "<"); // position parameter - insert at the start of the animation
-  }, []);
+    },
+    { scope: sectionRef }
+  );
 
   return (
     <section
+      ref={sectionRef}
       id="experience"
       className="flex-center md:mt-40 mt-20 section-padding xl:px-0"
     >
-      <div className="w-full h-full md:px-20 px-5">
+      <div className="section-shell">
         <TitleHeader
           title="Professional Work Experience"
           sub="💼 My Career Overview"
         />
-        <div className="mt-32 relative">
-          <div className="relative z-50 xl:space-y-32 space-y-10">
-            {expCards.map((card) => (
-              <div key={card.title} className="exp-card-wrapper">
-                <div className="xl:w-2/6">
-                  <GlowCard card={card}>
-                    <div>
-                      <img src={card.imgPath} alt="exp-img" />
-                    </div>
-                  </GlowCard>
-                </div>
-                <div className="xl:w-4/6">
-                  <div className="flex items-start">
-                    <div className="timeline-wrapper">
-                      <div className="timeline" />
-                      <div className="gradient-line w-1 h-full" />
-                    </div>
-                    <div className="expText flex xl:gap-20 md:gap-10 gap-5 relative z-20">
-                      <div className="timeline-logo">
-                        <img src={card.logoPath} alt="logo" />
-                      </div>
-                      <div>
-                        <h1 className="font-semibold text-3xl">{card.title}</h1>
-                        <p className="my-5 text-white-50">
-                          🗓️&nbsp;{card.date}
-                        </p>
-                        <p className="text-[#839CB5] italic">
-                          Responsibilities
-                        </p>
-                        <ul className="list-disc ms-5 mt-5 flex flex-col gap-5 text-white-50">
-                          {card.responsibilities.map(
-                            (responsibility, index) => (
-                              <li key={index} className="text-lg">
-                                {responsibility}
-                              </li>
-                            )
-                          )}
-                        </ul>
-                      </div>
-                    </div>
+
+        <div className="experience-stack">
+          {expCards.map((card, index) => {
+            const isReverse = index % 2 === 1;
+
+            return (
+              <article
+                key={card.title}
+                data-direction={isReverse ? "reverse" : "forward"}
+                className="experience-row"
+              >
+                <div className="experience-rail" aria-hidden="true">
+                  <span className="experience-rail-track" />
+                  <span className="experience-rail-progress" />
+                  <div className="timeline-logo">
+                    <img
+                      src={card.logoPath}
+                      alt={card.title}
+                      loading="lazy"
+                    />
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+
+                <div className="experience-content">
+                  <div
+                    className={`experience-card-panel xl:row-start-1 ${isReverse ? "xl:col-start-3" : "xl:col-start-1"}`}
+                  >
+                    <GlowCard card={card} className="mb-0 h-full">
+                      <div>
+                        <img
+                          src={card.imgPath}
+                          alt={card.title}
+                          loading="lazy"
+                        />
+                      </div>
+                    </GlowCard>
+                  </div>
+
+                  <div
+                    className={`experience-detail-panel xl:row-start-1 ${isReverse ? "xl:col-start-1" : "xl:col-start-3"}`}
+                  >
+                    <p className="experience-kicker">Role and impact</p>
+                    <h3 className="experience-title">{card.title}</h3>
+                    <p className="experience-date">🗓️ {card.date}</p>
+                    <p className="experience-subtitle">Responsibilities</p>
+
+                    <ul className="experience-list">
+                      {card.responsibilities.map((responsibility) => (
+                        <li key={responsibility}>{responsibility}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>

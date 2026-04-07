@@ -3,107 +3,152 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
+import TitleHeader from "../components/TitleHeader";
+import { featuredProjects } from "../constants";
+
 gsap.registerPlugin(ScrollTrigger);
 
-const AppShowcase = () => {
+const ShowcaseSection = () => {
   const sectionRef = useRef(null);
-  const rydeRef = useRef(null);
-  const libraryRef = useRef(null);
-  const ycDirectoryRef = useRef(null);
+  const [featuredProject, ...supportingProjects] = featuredProjects;
 
-  useGSAP(() => {
-    // Animation for the main section
-    gsap.fromTo(
-      sectionRef.current,
-      { opacity: 0 },
-      { opacity: 1, duration: 1.5 }
-    );
-
-    // Animations for each app showcase
-    const cards = [rydeRef.current, libraryRef.current, ycDirectoryRef.current];
-
-    cards.forEach((card, index) => {
+  useGSAP(
+    () => {
       gsap.fromTo(
-        card,
-        {
-          y: 50,
-          opacity: 0,
-        },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1,
-          delay: 0.3 * (index + 1),
-          scrollTrigger: {
-            trigger: card,
-            start: "top bottom-=100",
-          },
-        }
+        sectionRef.current,
+        { opacity: 0 },
+        { opacity: 1, duration: 1.2, ease: "power2.out" }
       );
-    });
-  }, []);
+
+      gsap.utils.toArray(".project-showcase-card").forEach((card, index) => {
+        gsap.fromTo(
+          card,
+          { y: 50, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.9,
+            delay: 0.15 * index,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top bottom-=100",
+              once: true,
+            },
+          }
+        );
+      });
+    },
+    { scope: sectionRef }
+  );
 
   return (
-    <div id="work" ref={sectionRef} className="app-showcase">
-      <div className="w-full">
+    <section id="work" ref={sectionRef} className="app-showcase">
+      <div className="w-full max-w-[1280px] mx-auto">
+        <TitleHeader
+          title="Selected Work That Feels Clear, Fast, and Premium"
+          sub="🚀 Featured case studies"
+        />
+
         <div className="showcaselayout">
-          <div ref={rydeRef} className="first-project-wrapper cursor-pointer">
-            <a
-              href="https://shopsearch-dev-new.awsdev.dartslive.com/jp/"
-              target="_blank"
-              rel="Darts live "
-            >
-              <div className="image-wrapper">
-                <img src="/images/project1.png" alt="Ryde App Interface" />
-              </div>
-              <div className="text-content">
-                <h2>
-                  Dartslive is a real-time darts app that lets players track
-                  scores, connect with others, and enjoy a smooth, modern
-                  experience on both mobile and desktop with a sleek, responsive
-                  UI.
-                </h2>
-                <p className="text-white-50 md:text-xl">
-                  An app built with Python with Djangu, Expo, & TailwindCSS for
-                  a fast, user-friendly experience.
-                </p>
-              </div>
-            </a>
-            <div className="text-red-600">
-              <p>User name : retty </p>
-              <p>Password: NOy$a0n3af</p>
+          <article className="first-project-wrapper project-showcase-card">
+            <div className="project-status-row">
+              <span className="project-status-pill">
+                {featuredProject.eyebrow}
+              </span>
+              <span className="project-status-note">
+                Built for real-world delivery
+              </span>
             </div>
-          </div>
+
+            <div className="image-wrapper">
+              <img
+                src={featuredProject.imgPath}
+                alt={featuredProject.title}
+                loading="eager"
+              />
+            </div>
+
+            <div className="text-content">
+              <h2>{featuredProject.title}</h2>
+              <p className="project-summary">{featuredProject.description}</p>
+              <p className="text-white-50 md:text-lg">{featuredProject.summary}</p>
+
+              <div className="project-pill-row">
+                {featuredProject.tags.map((tag) => (
+                  <span key={tag} className="project-pill">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <ul className="project-highlights">
+                {featuredProject.highlights.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+
+              <div className="project-actions">
+                <a
+                  href={featuredProject.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="project-link"
+                >
+                  {featuredProject.cta}
+                </a>
+                <a href="#contact" className="project-link subtle">
+                  Build something similar
+                </a>
+              </div>
+
+              <p className="project-note">{featuredProject.note}</p>
+            </div>
+          </article>
 
           <div className="project-list-wrapper overflow-hidden">
-            <a
-              href="https://shopping-cart-alshohid.vercel.app/"
-              target="_blank"
-              rel="Ecommece app"
-            >
-              <div className="project" ref={libraryRef}>
-                <div className="image-wrapper bg-[#FFEFDB]">
+            {supportingProjects.map((project) => (
+              <article
+                key={project.title}
+                className="project compact-project project-showcase-card"
+              >
+                <div className="image-wrapper bg-[#111827]">
                   <img
-                    src="/images/project2.png"
-                    alt="Library Management Platform"
+                    src={project.imgPath}
+                    alt={project.title}
+                    loading="lazy"
                   />
                 </div>
-                <h2>Online Shopping Platform</h2>
-              </div>
-            </a>
-            <a href="https://update-jumping-game.vercel.app/" target="_blank">
-              <div className="project" ref={ycDirectoryRef}>
-                <div className="image-wrapper bg-[#FFE7EB]">
-                  <img src="/images/project3.png" alt="YC Directory App" />
+
+                <div className="compact-project-copy">
+                  <span className="project-status-pill">{project.eyebrow}</span>
+                  <h3>{project.title}</h3>
+                  <p>{project.description}</p>
+
+                  <div className="project-pill-row">
+                    {project.tags.map((tag) => (
+                      <span key={tag} className="project-pill">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  <a
+                    href={project.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="project-link subtle"
+                  >
+                    {project.cta}
+                  </a>
                 </div>
-                <h2>Jumping Game</h2>
-              </div>
-            </a>
+              </article>
+            ))}
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
-export default AppShowcase;
+export default ShowcaseSection;
