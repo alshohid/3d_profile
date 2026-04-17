@@ -1,0 +1,17 @@
+<svg width="280" height="52" viewBox="0 0 280 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="280" height="52" rx="16" fill="#07131C"/>
+  <rect x="1" y="1" width="278" height="50" rx="15" stroke="#143247"/>
+  <rect x="16" y="12" width="28" height="28" rx="10" fill="#0B1B28"/>
+  <path d="M24 17H30.75C34.8817 17 37.5 19.1227 37.5 22.6153C37.5 24.8606 36.3128 26.427 34.1538 27.1122C36.677 27.6804 38.0625 29.4224 38.0625 32.0299C38.0625 35.862 35.1206 38.125 30.6625 38.125H24V17ZM30.5438 25.117C32.4169 25.117 33.5625 24.2989 33.5625 22.8602C33.5625 21.4712 32.4663 20.6798 30.5438 20.6798H27.7406V25.117H30.5438ZM30.8664 34.4182C32.9424 34.4182 34.2375 33.5149 34.2375 31.8852C34.2375 30.2299 32.9424 29.3344 30.8664 29.3344H27.7406V34.4182H30.8664Z" fill="url(#paint0_linear_194_3)"/>
+  <circle cx="38" cy="18" r="3" fill="#F6C453"/>
+  <text x="58" y="23" fill="#E8F7FF" font-family="Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="0.08em">BETOPIA</text>
+  <text x="58" y="37" fill="#8CB5CC" font-family="Arial, sans-serif" font-size="10" letter-spacing="0.06em">CURRENT FRONTEND ROLE</text>
+  <rect x="190" y="15" width="72" height="22" rx="11" fill="#0C2130"/>
+  <text x="204" y="29" fill="#9FE7FF" font-family="Arial, sans-serif" font-size="10" font-weight="700">Frontend</text>
+  <defs>
+    <linearGradient id="paint0_linear_194_3" x1="24" y1="17" x2="39.3722" y2="34.592" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#A5F3FC"/>
+      <stop offset="1" stop-color="#38BDF8"/>
+    </linearGradient>
+  </defs>
+</svg>

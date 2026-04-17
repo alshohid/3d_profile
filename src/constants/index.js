@@ -225,11 +225,24 @@ const techStackIcons = [
 const expCards = [
   {
     review:
+      "At Betopia, Shohid is contributing as a Frontend Developer with a strong focus on polished UI, dependable delivery, and product-minded execution across live web experiences.",
+    imgPath: "/images/exp4.svg",
+    logoPath: "/images/logos/betopia.svg",
+    title: "Frontend Developer - Betopia",
+    date: "November 2026 - Present",
+    responsibilities: [
+      "Builds and improves user-facing product features with attention to responsiveness, usability, and clean interface behavior.",
+      "Works with product, design, and backend teammates to turn platform requirements into clear frontend experiences.",
+      "Maintains reusable UI structure and visual consistency across Betopia's web surfaces.",
+    ],
+  },
+  {
+    review:
       "Shohid brings strong visual judgment and frontend discipline to every build. He balances polish, responsiveness, and maintainable structure in a way that helps products feel premium in the browser.",
     imgPath: "/images/exp2.png",
     logoPath: "/images/logo2.png",
-    title: "Frontend Developer (Remote)",
-    date: "November 2024 - Present",
+    title: "Frontend Developer",
+    date: "November 2024 - December 2025",
     responsibilities: [
       "Built user-facing product features with a focus on smooth interaction and responsive behavior.",
       "Worked closely with design and product direction to translate ideas into reliable frontend delivery.",
@@ -249,19 +262,19 @@ const expCards = [
       "Contributed to cleaner implementation patterns and more reliable user journeys.",
     ],
   },
-  {
-    review:
-      "Shohid adds value through clean React execution, practical UI thinking, and the ability to turn product feedback into clear, working experiences.",
-    imgPath: "/images/exp3.png",
-    logoPath: "/images/logo3.png",
-    title: "React / Next.js Developer",
-    date: "March 2019 - May 2020",
-    responsibilities: [
-      "Built responsive interfaces with React and Next.js for product-driven experiences.",
-      "Supported mobile-friendly workflows and UI integration with backend services.",
-      "Worked with product and design feedback to improve usability and delivery quality.",
-    ],
-  },
+  // {
+  //   review:
+  //     "Shohid adds value through clean React execution, practical UI thinking, and the ability to turn product feedback into clear, working experiences.",
+  //   imgPath: "/images/exp3.png",
+  //   logoPath: "/images/logo3.png",
+  //   title: "React / Next.js Developer",
+  //   date: "March 2019 - May 2020",
+  //   responsibilities: [
+  //     "Built responsive interfaces with React and Next.js for product-driven experiences.",
+  //     "Supported mobile-friendly workflows and UI integration with backend services.",
+  //     "Worked with product and design feedback to improve usability and delivery quality.",
+  //   ],
+  // },
 ];
 
 const processHighlights = [
